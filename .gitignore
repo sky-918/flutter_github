@@ -79,3 +79,4 @@
 **/*.g.dart
 **/pubspec.lock
 **/.flutter-plugins-dependencies
+/analysis_options.yaml
