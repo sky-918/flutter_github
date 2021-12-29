@@ -18,7 +18,7 @@ class AppComponent extends StatefulWidget {
 class _AppComponentState extends State<AppComponent> {
   _AppComponentState(){
     final router=FluroRouter();
-    Routes.configureRoutes(router);
+    Routers.configureRoutes(router);
     Application.router = router;
   }
   @override

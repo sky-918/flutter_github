@@ -7,13 +7,15 @@ import 'route_handlers.dart';
 /// desc   : 配置路由的文件
 /// version:v1.0.0
 ///
-class Routes{
+class Routers{
   static String root='/';
+  static String test='/test';
   static configureRoutes(FluroRouter router){
     router.notFoundHandler=Handler(handlerFunc: (BuildContext? context, Map<String, List<String>> parameters) {
       print('未找到路径');
       return;
     });
     router.define(root, handler: rootHandler);
+    router.define(test, handler: testHandler);
   }
 }

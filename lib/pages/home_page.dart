@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_github/widget/keep_alive_wrapper.dart';
+import '/utils/navigator_util.dart';
+
+import '../res/res_index.dart';
+import '../widget/keep_alive_wrapper.dart';
 
 /// @auter Created by tyy on 2021/12/27
 /// desc   :
@@ -9,7 +12,8 @@ import 'package:flutter_github/widget/keep_alive_wrapper.dart';
 class HomePage extends StatefulWidget {
   final String title;
 
-  const HomePage({Key? key, this.title = "home---"}) : super(key: key);
+  const HomePage({Key? key, this.title = AppStrings.appTitle})
+      : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -21,12 +25,21 @@ class _HomePageState extends State<HomePage> {
     var children = <Widget>[];
     // 生成 6 个 Tab 页
     for (int i = 0; i < 6; ++i) {
-      children.add(KeepAliveWrapper(child: Page(text: "$i"),));
+      children.add(KeepAliveWrapper(
+        child: Page(text: "$i"),
+      ));
     }
 
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                NavigatorUtils.goTestPage(context);
+              }),
+        ],
       ),
       body: PageView(
         scrollDirection: Axis.horizontal,
