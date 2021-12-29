@@ -1,36 +1,37 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/home_page.dart';
+import 'app/application.dart';
+import 'routes/routes.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(AppComponent());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class AppComponent extends StatefulWidget {
+  const AppComponent({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  _AppComponentState createState() => _AppComponentState();
+}
+
+class _AppComponentState extends State<AppComponent> {
+  _AppComponentState(){
+    final router=FluroRouter();
+    Routes.configureRoutes(router);
+    Application.router = router;
+  }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    final app = MaterialApp(
+      title: 'Fluro',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.blue,
       ),
-      routes: {
-
-      },
-      home: const HomePage(),
+      onGenerateRoute: Application.router.generator,
     );
+   print("initial route = ${app.initialRoute}");
+    return app;
   }
 }
-
