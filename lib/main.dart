@@ -24,14 +24,12 @@ class _AppComponentState extends State<AppComponent> {
   @override
   Widget build(BuildContext context) {
     final app = MaterialApp(
-      title: 'Fluro',
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: Application.router.generator,
     );
-   print("initial route = ${app.initialRoute}");
     return app;
   }
 }
