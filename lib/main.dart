@@ -2,7 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 import 'app/application.dart';
-import 'routes/routes.dart';
+import 'routes/routers.dart';
 
 void main() {
   runApp(AppComponent());
