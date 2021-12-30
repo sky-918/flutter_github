@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '/utils/navigator_util.dart';
+import 'package:flutter_github/app/application.dart';
 
+import '/utils/navigator_util.dart';
 import '../res/res_index.dart';
 import '../widget/keep_alive_wrapper.dart';
 
@@ -22,6 +23,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    //屏幕适配初始化
+    Application.onScreenInit(context);
     var children = <Widget>[];
     // 生成 6 个 Tab 页
     for (int i = 0; i < 6; ++i) {
