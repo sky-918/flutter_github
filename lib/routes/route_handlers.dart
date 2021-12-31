@@ -1,5 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_github/pages/person/person_page.dart';
 import 'package:flutter_github/pages/test_page.dart';
 
 import '../pages/home_page.dart';
@@ -19,4 +20,10 @@ var rootHandler = Handler(
 var testHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
   return const TestPage();
+});
+
+//个人中心
+var personCenterHandler = Handler(
+    handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
+  return const PersonCenterPage();
 });

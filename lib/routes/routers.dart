@@ -10,6 +10,7 @@ import 'route_handlers.dart';
 class Routers{
   static String root='/';
   static String test='/test';
+  static String person='/person';
   static configureRoutes(FluroRouter router){
     router.notFoundHandler=Handler(handlerFunc: (BuildContext? context, Map<String, List<String>> parameters) {
       print('未找到路径');
@@ -17,5 +18,6 @@ class Routers{
     });
     router.define(root, handler: rootHandler);
     router.define(test, handler: testHandler);
+    router.define(person, handler: personCenterHandler);
   }
 }
