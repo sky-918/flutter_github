@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_github/utils/log_util.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../widget/sliver_header_delegate.dart';
 import 'widget/person_header.dart';
+import 'widget/person_top_menu_widget.dart';
 
 /// @auter Created by tyy on 2021/12/31
 /// desc   :个人中心页面
@@ -19,12 +21,7 @@ class PersonCenterPage extends StatefulWidget {
 class _PersonCenterPageState extends State<PersonCenterPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("sdadas"),
-      ),
-      body: PersistentHeaderRoute(),
-    );
+    return PersistentHeaderRoute()
 
     ;
   }
@@ -39,8 +36,8 @@ class PersistentHeaderRoute extends StatelessWidget {
           pinned: false,
           delegate: SliverHeaderDelegate(
             //有最大和最小高度
-            maxHeight: 220,
-            minHeight: 180,
+            maxHeight:120.h,
+            minHeight: 120.h,
             child: PersonHeaderWidget(),
           ),
         ),
@@ -48,18 +45,9 @@ class PersistentHeaderRoute extends StatelessWidget {
           pinned: true,
           delegate: SliverHeaderDelegate(
             //有最大和最小高度
-            maxHeight: 80,
-            minHeight: 50,
-            child: buildHeader(1),
-          ),
-        ),
-        buildSliverList(),
-        SliverPersistentHeader(
-          pinned: true,
-          delegate: SliverHeaderDelegate.fixedHeight(
-            //固定高度
-            height: 50,
-            child: buildHeader(2),
+            maxHeight: 50.h,
+            minHeight: 50.h,
+            child: PersonTopMenuWidget(),
           ),
         ),
         buildSliverList(20),

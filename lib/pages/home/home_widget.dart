@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../pages/person/person_page.dart';
 
 import '../../res/res_index.dart';
 import '../../utils/navigator_util.dart';
@@ -26,7 +27,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       child: Page(text: "1"),
     ),
     KeepAliveWrapper(
-      child: Page(text: "2"),
+      child: PersonCenterPage(),
     )
   ];
   final PageController _pageController = PageController();
