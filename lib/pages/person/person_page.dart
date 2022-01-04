@@ -1,8 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_github/utils/log_util.dart';
+
 import '../../widget/sliver_header_delegate.dart';
+import 'widget/person_header.dart';
 
 /// @auter Created by tyy on 2021/12/31
 /// desc   :个人中心页面
@@ -39,12 +39,11 @@ class PersistentHeaderRoute extends StatelessWidget {
           pinned: false,
           delegate: SliverHeaderDelegate(
             //有最大和最小高度
-            maxHeight: 80,
-            minHeight: 50,
-            child: Text("data"),
+            maxHeight: 220,
+            minHeight: 180,
+            child: PersonHeaderWidget(),
           ),
         ),
-        buildSliverList(),
         SliverPersistentHeader(
           pinned: true,
           delegate: SliverHeaderDelegate(
@@ -54,7 +53,6 @@ class PersistentHeaderRoute extends StatelessWidget {
             child: buildHeader(1),
           ),
         ),
-
         buildSliverList(),
         SliverPersistentHeader(
           pinned: true,

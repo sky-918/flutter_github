@@ -8,5 +8,6 @@ import 'package:flutter/material.dart';
 ///
 class AppColors{
   static const Color dividerColor =Color(0Xffd9d9d9);
+  static const Color appColor =Color(0xFF2196F3);
 
 }

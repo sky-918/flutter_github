@@ -4,4 +4,8 @@
 ///
 class AppDimens{
   static const double font_18sp = 18.0;
+  static const double font_16sp = 16.0;
+  static const double font_14sp = 14.0;
+  static const double font_12sp = 12.0;
+  static const double font_10sp = 10.0;
 }
