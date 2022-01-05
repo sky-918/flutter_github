@@ -1,5 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'app/application.dart';
 import 'routes/routers.dart';
@@ -29,6 +30,7 @@ class _AppComponentState extends State<AppComponent> {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: Application.router.generator,
+      builder:  EasyLoading.init(),
     );
     return app;
   }
