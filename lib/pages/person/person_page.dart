@@ -57,7 +57,6 @@ class PersistentHeaderRoute extends StatelessWidget {
 
   // 构建固定高度的SliverList，count为列表项属相
   Widget buildSliverList([int count = 5]) {
-    LogUtils.d("sdasdasdasdasd");
     return SliverFixedExtentList(
       itemExtent: 50,
       delegate: SliverChildBuilderDelegate(

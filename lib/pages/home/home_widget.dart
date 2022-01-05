@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github/network/api_address.dart';
+import '../../network/http_client.dart';
 import '../../pages/person/person_page.dart';
 
 import '../../res/res_index.dart';
@@ -52,8 +54,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   }
 
   void _onPageviewChane(index) {
+    _getdata();
     _pageController.animateToPage(index,
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
+  }
+
+  _getdata() async {
+    HttpClient.instanc.get(ApiAddress.loginUrl);
   }
 
   @override
