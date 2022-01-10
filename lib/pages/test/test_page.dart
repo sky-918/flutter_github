@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_github/widget/divider_line.dart';
 
@@ -20,34 +21,15 @@ class _TestPageState extends State<TestPage> {
       appBar: AppBar(
         title: const Text("测试页面"),
       ),
-      body:
-      // MyStatelessWidget(),
-       MyStatefulWidget(),
-      // MyStatefulWidget1(),
-      // Column(
-      //   mainAxisAlignment: MainAxisAlignment.center,
-      //   children: [
-      //     Text("测试页面"),
-      //     DividerLine(height: 0.5,),
-      //
-      //     DecoratedBox(
-      //         decoration: BoxDecoration(
-      //           border: Border(
-      //             top: Divider.createBorderSide(context),
-      //             bottom: Divider.createBorderSide(context),
-      //             left: Divider.createBorderSide(context),
-      //             right: Divider.createBorderSide(context),
-      //           ),
-      //         ),
-      //         child: Text("sdsdds")
-      //     ),
-      //
-      //   ],
-      // ),
+      body:Column(children: [
+      TextButton(onPressed: (){}, child: Text("data"))
+      ],)
+
     );
   }
 }
 
+///滑动页面
 class MyStatelessWidget extends StatelessWidget {
   const MyStatelessWidget({Key? key}) : super(key: key);
 
@@ -86,8 +68,7 @@ class MyStatelessWidget extends StatelessWidget {
   }
 }
 
-
-
+///分割线
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);
 
@@ -95,10 +76,11 @@ class MyStatefulWidget extends StatefulWidget {
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
+///分割线
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',
@@ -152,8 +134,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 
-
-
+///分割线
 class MyStatefulWidget1 extends StatefulWidget {
   const MyStatefulWidget1({Key? key}) : super(key: key);
 
@@ -161,10 +142,11 @@ class MyStatefulWidget1 extends StatefulWidget {
   State<MyStatefulWidget1> createState() => _MyStatefulWidgetState1();
 }
 
+///分割线
 class _MyStatefulWidgetState1 extends State<MyStatefulWidget1> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',

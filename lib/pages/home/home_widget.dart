@@ -72,7 +72,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           IconButton(
               icon: const Icon(Icons.menu),
               onPressed: () {
-                NavigatorUtils.goTestPage(context);
+
+                // NavigatorUtils.goTestPage(context);
+                NavigatorUtils.  goTestBlocPage(context);
               }),
         ],
       ),

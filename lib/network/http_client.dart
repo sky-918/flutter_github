@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_github/network/api_address.dart';
 import 'package:flutter_github/utils/log_util.dart';
 
@@ -29,10 +30,12 @@ class HttpClient {
 
   get(api, {params, isShowLoading = true}) async {
     if (isShowLoading) {
-      LogUtils.d("加载框");
+     EasyLoading.show();
     }
     Response response;
     response = await _dio.get(api, queryParameters: params);
+    EasyLoading.dismiss();
+
     return response.data;
   }
 }
