@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_github/widget/divider_line.dart';
+import '/utils/navigator_util.dart';
 
 /// @auter Created by tyy on 2021/12/29
 /// desc   :一个测试各种UI的页面
@@ -22,7 +22,9 @@ class _TestPageState extends State<TestPage> {
         title: const Text("测试页面"),
       ),
       body:Column(children: [
-      TextButton(onPressed: (){}, child: Text("data"))
+      TextButton(onPressed: (){
+        NavigatorUtils.  goTestBlocPage(context);
+      }, child: Text("BlocPage"))
       ],)
 
     );
