@@ -60,7 +60,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   }
 
   _getdata() async {
-    HttpClient.instanc.get(ApiAddress.loginUrl);
+    // HttpClient.instanc.get(ApiAddress.loginUrl);
+    HttpClient.instanc.requestNetwork(ApiAddress.loginUrl);
   }
 
   @override

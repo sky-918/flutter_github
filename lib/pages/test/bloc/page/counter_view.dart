@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_github/res/res_index.dart';
 
 import '../bloctest_bloc.dart';
 
@@ -18,7 +19,11 @@ class CounterView extends StatelessWidget {
       ),
       body: Center(
         child: BlocBuilder<testBloc, TestInitial>(builder: (context, state) {
-          return Text('${state.n}');
+          return Text(
+            '${state.n}',
+            style: TextStyles.textSize18Bold,
+              textScaleFactor: 5
+          );
         }),
       ),
       floatingActionButton: Column(

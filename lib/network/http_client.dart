@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_github/network/api_address.dart';
-import 'package:flutter_github/utils/log_util.dart';
 
 import 'log_interceptor.dart';
 
@@ -30,7 +29,7 @@ class HttpClient {
 
   get(api, {params, isShowLoading = true}) async {
     if (isShowLoading) {
-     EasyLoading.show();
+      EasyLoading.show();
     }
     Response response;
     response = await _dio.get(api, queryParameters: params);
@@ -38,4 +37,26 @@ class HttpClient {
 
     return response.data;
   }
+
+  requestNetwork<T>(url,
+      {Map<String, dynamic>? params,
+     bool isShowLoading = true,
+        Method method = Method.get,
+      Options? options}) async {
+    Response response;
+    // response = await _dio.get(url, queryParameters: params);
+    response=  _dio.request(url,queryParameters: params,options: _checkOptions(method.value, options) ) as Response;
+    return T;
+  }
+  Options _checkOptions(String method, Options? options) {
+    options ??= Options();
+    options.method = method;
+    return options;
+  }
+}
+
+enum Method { get, post, put, patch, delete, head }
+
+extension MethodExtension on Method {
+  String get value => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'][index];
 }
