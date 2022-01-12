@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_github/utils/log_util.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../widget/sliver_header_delegate.dart';
+import 'bloc/person_bloc.dart';
 import 'widget/person_header.dart';
 import 'widget/person_top_menu_widget.dart';
 
@@ -11,23 +12,31 @@ import 'widget/person_top_menu_widget.dart';
 /// version:v1.0.0
 ///
 
-class PersonCenterPage extends StatefulWidget {
+class PersonCenterPage extends StatelessWidget {
   const PersonCenterPage({Key? key}) : super(key: key);
 
   @override
-  _PersonCenterPageState createState() => _PersonCenterPageState();
-}
-
-class _PersonCenterPageState extends State<PersonCenterPage> {
-  @override
   Widget build(BuildContext context) {
-    return PersistentHeaderRoute()
-
-    ;
+    return BlocProvider(
+      create: (_) => PersonBloc(),
+      child: PersistentHeaderRoute(),
+    );
   }
 }
 
-class PersistentHeaderRoute extends StatelessWidget {
+class PersistentHeaderRoute extends StatefulWidget {
+  const PersistentHeaderRoute({Key? key}) : super(key: key);
+
+  @override
+  _PersistentHeaderRouteState createState() => _PersistentHeaderRouteState();
+}
+
+class _PersistentHeaderRouteState extends State<PersistentHeaderRoute> {
+  @override
+  void initState() {
+    context.read<PersonBloc>().add(UpdataEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -36,7 +45,7 @@ class PersistentHeaderRoute extends StatelessWidget {
           pinned: false,
           delegate: SliverHeaderDelegate(
             //有最大和最小高度
-            maxHeight:120.h,
+            maxHeight: 120.h,
             minHeight: 120.h,
             child: PersonHeaderWidget(),
           ),

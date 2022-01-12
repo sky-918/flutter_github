@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_github/pages/person/bloc/person_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../res/res_index.dart';
@@ -16,33 +18,39 @@ class PersonHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.appColor,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(
-          children: [_personHeaderImg(context), _personHeaderInfo(context)],
-        ),
-        ImageTextWidget(
-          title: "目前什么都没有",
-          iconData: Icons.link,
-          imgSize: 15.w,
-          style: TextStyles.textSize10,
-        ),
-        Text(
-          "创建时间",
-          style: TextStyles.textSize10,
-        )
-      ]),
+      child: BlocBuilder<PersonBloc, PersonState>(builder: (context, state) {
+        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
+            children: [
+              _personHeaderImg(context, state.personBean.avatarUrl),
+              _personHeaderInfo(context)
+            ],
+          ),
+          ImageTextWidget(
+            title: "目前什么都没有",
+            iconData: Icons.link,
+            imgSize: 15.w,
+            style: TextStyles.textSize10,
+          ),
+          Text(
+            "创建时间",
+            style: TextStyles.textSize10,
+          )
+        ]);
+      }),
     );
   }
 
   ///用户头像
   ///
-  _personHeaderImg(context) {
+  _personHeaderImg(context, String? url) {
     return InkWell(
       child: Padding(
         padding: EdgeInsets.all(10),
         child: ClipOval(
           child: Image.network(
-            'https://file02.16sucai.com/d/file/2014/0829/b871e1addf5f8e96f3b390ece2b2da0d.jpg',
+            url ??
+                'https://file02.16sucai.com/d/file/2014/0829/b871e1addf5f8e96f3b390ece2b2da0d.jpg',
             width: 80,
             height: 80,
             fit: BoxFit.cover,

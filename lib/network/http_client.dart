@@ -56,12 +56,12 @@ class HttpClient {
       response = await _dio.request(url,
           queryParameters: params,
           options: _checkOptions(method.value, options));
+      EasyLoading.dismiss();
       if (response.statusCode == 200 && response.data != null) {
         onSuccessCall?.call(response.data);
       } else {
         onErrorCall?.call("数据异常");
       }
-      EasyLoading.dismiss();
     } on DioError catch (e) {
       EasyLoading.dismiss();
       onErrorCall?.call(e.message);

@@ -62,12 +62,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   _getdata() async {
     // HttpClient.instanc.get(ApiAddress.loginUrl);
-    HttpClient.instanc.requestNetwork(ApiAddress.loginUrl,
-        onErrorCall: (String mesage) {
-      LogUtils.d("错误信息：$mesage");
-    }, onSuccessCall: (dynamic data) {
-          LogUtils.d("收到的数据：$data");
-        });
+    // HttpClient.instanc.requestNetwork(ApiAddress.loginUrl,
+    //     onErrorCall: (String mesage) {
+    //   LogUtils.d("错误信息：$mesage");
+    // }, onSuccessCall: (dynamic data) {
+    //       LogUtils.d("收到的数据：$data");
+    //     });
   }
 
   @override
