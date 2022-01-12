@@ -9,6 +9,9 @@ import 'log_interceptor.dart';
 /// version:v1.0.0
 ///
 
+typedef onSuccess<T> = Function(T data);
+typedef onError<String> = Function(String mesage);
+
 class HttpClient {
   static const _connecTimeout = 5000;
   static const _receiveTimeout = 5000;
@@ -38,16 +41,33 @@ class HttpClient {
     return response.data;
   }
 
-  requestNetwork<T>(url,
+  requestNetwork(url,
       {Map<String, dynamic>? params,
-     bool isShowLoading = true,
-        Method method = Method.get,
+      onSuccess? onSuccessCall,
+      onError<String>? onErrorCall,
+      bool isShowLoading = true,
+      Method method = Method.get,
       Options? options}) async {
     Response response;
-    // response = await _dio.get(url, queryParameters: params);
-    response=  _dio.request(url,queryParameters: params,options: _checkOptions(method.value, options) ) as Response;
-    return T;
+    if (isShowLoading) {
+      EasyLoading.show();
+    }
+    try {
+      response = await _dio.request(url,
+          queryParameters: params,
+          options: _checkOptions(method.value, options));
+      if (response.statusCode == 200 && response.data != null) {
+        onSuccessCall?.call(response.data);
+      } else {
+        onErrorCall?.call("数据异常");
+      }
+      EasyLoading.dismiss();
+    } on DioError catch (e) {
+      EasyLoading.dismiss();
+      onErrorCall?.call(e.message);
+    }
   }
+
   Options _checkOptions(String method, Options? options) {
     options ??= Options();
     options.method = method;

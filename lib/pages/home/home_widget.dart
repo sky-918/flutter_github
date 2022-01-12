@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_github/network/api_address.dart';
+import 'package:flutter_github/utils/log_util.dart';
+
 import '../../network/http_client.dart';
 import '../../pages/person/person_page.dart';
-
 import '../../res/res_index.dart';
 import '../../utils/navigator_util.dart';
 import '../../widget/keep_alive_wrapper.dart';
@@ -61,7 +62,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   _getdata() async {
     // HttpClient.instanc.get(ApiAddress.loginUrl);
-    HttpClient.instanc.requestNetwork(ApiAddress.loginUrl);
+    HttpClient.instanc.requestNetwork(ApiAddress.loginUrl,
+        onErrorCall: (String mesage) {
+      LogUtils.d("错误信息：$mesage");
+    }, onSuccessCall: (dynamic data) {
+          LogUtils.d("收到的数据：$data");
+        });
   }
 
   @override
@@ -73,9 +79,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           IconButton(
               icon: const Icon(Icons.menu),
               onPressed: () {
-
-           NavigatorUtils.goTestPage(context);
-
+                NavigatorUtils.goTestPage(context);
               }),
         ],
       ),
