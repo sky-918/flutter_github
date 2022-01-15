@@ -43,9 +43,15 @@ dependencies:
   flutter_spinkit: ^5.1.0
   #可以是加载框也是toast
   flutter_easyloading: ^3.0.3
+  #响应编程模式
   flutter_bloc: ^8.0.1
-  bloc: ^8.0.2
+  #比较不同
   equatable: ^2.0.3
+  #webview插件
+  webview_flutter: ^3.0.0
+  oktoast: ^3.1.5
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

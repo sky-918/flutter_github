@@ -17,4 +17,12 @@ class NavigatorUtils {
   static goPersonCenterPage(BuildContext context) {
     Application.router.navigateTo(context, Routers.person);
   }
+
+  static goLoginCenterPage(BuildContext context) {
+    Application.router.navigateTo(context, Routers.login);
+  }
+ static goLoginWebPage(BuildContext context) {
+    Application.router.navigateTo(context, Routers.loginWeb);
+  }
+
 }

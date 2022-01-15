@@ -12,6 +12,8 @@ class Routers {
   static String test = '/test';
   static String person = '/person';
   static String blocTest = '/test/blocpage';
+  static String login = '/login';
+  static String loginWeb = '/login/webpage';
 
   static configureRoutes(FluroRouter router) {
     router.notFoundHandler = Handler(handlerFunc:
@@ -23,5 +25,7 @@ class Routers {
     router.define(test, handler: testHandler);
     router.define(person, handler: personCenterHandler);
     router.define(blocTest, handler: testBlocPageHandler);
+    router.define(login, handler: loginCenterHandler);
+    router.define(loginWeb, handler: loginWebHandler);
   }
 }

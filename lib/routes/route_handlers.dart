@@ -2,6 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/home_page.dart';
+import '../pages/login/login_page.dart';
 import '../pages/person/person_page.dart';
 import '../pages/test/bloc/page/bloc_page.dart';
 import '../pages/test/test_page.dart';
@@ -30,4 +31,15 @@ var testBlocPageHandler = Handler(
 var personCenterHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
   return const PersonCenterPage();
+});
+//登录页面
+var loginCenterHandler = Handler(
+    handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
+  return const LoginPage();
+});
+
+//安全登录页面
+var loginWebHandler = Handler(
+    handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
+  return const LoginPage();
 });

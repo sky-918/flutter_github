@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
+
 import '/utils/navigator_util.dart';
 
 /// @auter Created by tyy on 2021/12/29
@@ -18,16 +19,28 @@ class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("测试页面"),
-      ),
-      body:Column(children: [
-      TextButton(onPressed: (){
-        NavigatorUtils.  goTestBlocPage(context);
-      }, child: Text("BlocPage"))
-      ],)
-
-    );
+        appBar: AppBar(
+          title: const Text("测试页面"),
+        ),
+        body: Column(
+          children: [
+            TextButton(
+                onPressed: () {
+                  NavigatorUtils.goTestBlocPage(context);
+                },
+                child: Text("BlocPage")),
+            TextButton(
+                onPressed: () {
+                  NavigatorUtils.goLoginCenterPage(context);
+                },
+                child: Text("login")),
+            TextButton(
+                onPressed: () {
+                  showToast("sdasdasd");
+                },
+                child: Text("toast"))
+          ],
+        ));
   }
 }
 
@@ -82,7 +95,7 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',
@@ -148,7 +161,7 @@ class MyStatefulWidget1 extends StatefulWidget {
 class _MyStatefulWidgetState1 extends State<MyStatefulWidget1> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',

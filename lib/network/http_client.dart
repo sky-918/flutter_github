@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_github/config/git_config.dart';
 import 'package:flutter_github/network/api_address.dart';
 
 import 'log_interceptor.dart';
@@ -67,10 +68,15 @@ class HttpClient {
       onErrorCall?.call(e.message);
     }
   }
-
+  Map<String,String> requestParams = {
+    "client_id": GitConfig.CLIENT_ID,
+    "client_secret": GitConfig.CLIENT_SECRET
+  };
   Options _checkOptions(String method, Options? options) {
+
     options ??= Options();
     options.method = method;
+    // options.headers=requestParams;
     return options;
   }
 }
