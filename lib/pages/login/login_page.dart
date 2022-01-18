@@ -1,3 +1,4 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_github/utils/navigator_util.dart';
 import 'package:oktoast/oktoast.dart';
@@ -8,7 +9,6 @@ import 'package:oktoast/oktoast.dart';
 ///
 ///
 
-GlobalKey globalKey = GlobalKey();
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -21,7 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      key: globalKey,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +50,9 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                   onPressed: () {
                     //跳转安全登录
-                    NavigatorUtils.goLoginWebPage(context);
+                    NavigatorUtils.goLoginWebPage(context).then((value){
+                      _getTokan(value);
+                    });
                   },
                   child: Text("安全登录")),
             ],
@@ -63,5 +64,9 @@ class _LoginPageState extends State<LoginPage> {
 
   void onLogin() {
     showToast("请使用安全登录");
+  }
+
+  void _getTokan(code) {
+
   }
 }

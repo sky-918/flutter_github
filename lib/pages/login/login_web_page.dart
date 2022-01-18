@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_github/utils/navigator_util.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../network/network.dart';
@@ -23,6 +24,7 @@ class _LoginWebPageState extends State<LoginWebPage> {
       WebView.platform = SurfaceAndroidWebView();
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +41,7 @@ class _LoginWebPageState extends State<LoginWebPage> {
               if (request.url.startsWith('tyy://authed')) {
                 var code = Uri.parse(request.url).queryParameters["code"];
 
-                ///48899893573906f36a0c
+                NavigatorUtils.goPop(context, result: code);
                 return NavigationDecision.prevent;
               }
               print('allowing navigation to $request');

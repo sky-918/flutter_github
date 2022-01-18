@@ -31,7 +31,8 @@ class _TestPageState extends State<TestPage> {
                 child: Text("BlocPage")),
             TextButton(
                 onPressed: () {
-                  NavigatorUtils.goLoginCenterPage(context);
+                  NavigatorUtils.goLoginCenterPage(context)
+                      .then((value) => showToast(value));
                 },
                 child: Text("login")),
             TextButton(
@@ -95,7 +96,7 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',
@@ -161,7 +162,7 @@ class MyStatefulWidget1 extends StatefulWidget {
 class _MyStatefulWidgetState1 extends State<MyStatefulWidget1> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',

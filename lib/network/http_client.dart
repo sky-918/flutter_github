@@ -31,17 +31,6 @@ class HttpClient {
     _dio = Dio(baseOptions)..interceptors.add(InterceptorLog());
   }
 
-  get(api, {params, isShowLoading = true}) async {
-    if (isShowLoading) {
-      EasyLoading.show();
-    }
-    Response response;
-    response = await _dio.get(api, queryParameters: params);
-    EasyLoading.dismiss();
-
-    return response.data;
-  }
-
   requestNetwork(url,
       {Map<String, dynamic>? params,
       onSuccess? onSuccessCall,

@@ -8,21 +8,30 @@ import '../routes/routers.dart';
 /// version:v1.0.0
 ///
 class NavigatorUtils {
+  //返回上一页
+  static goPop(BuildContext context, {String? result = ""}) {
+    Application.router.pop(context, result);
+  }
+
   static goTestPage(BuildContext context) {
     Application.router.navigateTo(context, Routers.test);
   }
+
   static goTestBlocPage(BuildContext context) {
     Application.router.navigateTo(context, Routers.blocTest);
   }
+
   static goPersonCenterPage(BuildContext context) {
     Application.router.navigateTo(context, Routers.person);
   }
 
-  static goLoginCenterPage(BuildContext context) {
-    Application.router.navigateTo(context, Routers.login);
-  }
- static goLoginWebPage(BuildContext context) {
-    Application.router.navigateTo(context, Routers.loginWeb);
+  //页面返回值使用返回Future进行使用
+  static Future goLoginCenterPage(BuildContext context) {
+    return Application.router.navigateTo(context, Routers.login);
   }
 
+  //安全登录返回code值
+  static Future goLoginWebPage(BuildContext context) {
+    return Application.router.navigateTo(context, Routers.loginWeb);
+  }
 }
