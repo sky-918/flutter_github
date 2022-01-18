@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
       var token = result.queryParameters["access_token"];
       if ((token ?? "").isNotEmpty) {
         SharedPreferencesUtil.savePreference(
-            context, AppConstant.tokenKey, token!);
+             AppConstant.tokenKey, token!);
       }
     });
   }

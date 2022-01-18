@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github/network/network.dart';
+import 'package:flutter_github/pages/person/bloc/person_bean.dart';
+import 'package:flutter_github/utils/log_util.dart';
 import 'package:oktoast/oktoast.dart';
 
 import '/utils/navigator_util.dart';
@@ -39,9 +42,27 @@ class _TestPageState extends State<TestPage> {
                 onPressed: () {
                   showToast("sdasdasd");
                 },
-                child: Text("toast"))
+                child: Text("toast")),
+            TextButton(
+                onPressed: () {
+                  _getNetwordData();
+                },
+                child: Text("GetUser"))
           ],
         ));
+  }
+  void _getNetwordData()  {
+    PersonBean? personBean;
+    HttpClient.instanc.requestNetwork(ApiAddress.loginUrl,
+        onErrorCall: (String mesage) {
+          LogUtils.d("错误信息：$mesage");
+        }, onSuccessCall: (data)  {
+          personBean =  PersonBean.fromJson(data);
+          if (personBean != null) {
+            LogUtils.d("发送图片: ${personBean!.avatarUrl}");
+          }
+        });
+
   }
 }
 

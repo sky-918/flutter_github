@@ -1,3 +1,4 @@
+
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
@@ -10,26 +11,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPreferencesUtil {
   //存储数据
   static Object savePreference(
-      BuildContext context, String key, Object value) async {
+      String key, Object value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (value is int) {
-      await prefs.setInt(key, value);
+      return    await prefs.setInt(key, value);
     } else if (value is double) {
-      await prefs.setDouble(key, value);
+      return    await prefs.setDouble(key, value);
     } else if (value is bool) {
-      await prefs.setBool(key, value);
+      return     await prefs.setBool(key, value);
     } else if (value is String) {
-      await prefs.setString(key, value);
+      return   await prefs.setString(key, value);
     } else if (value is List<String>) {
-      await prefs.setStringList(key, value);
+      return     await prefs.setStringList(key, value);
     } else {
-      throw new Exception("不能得到这种类型");
+      return   throw new Exception("不能得到这种类型");
     }
   }
 
   // 取数据
-  static Future getPreference(
-      Object context, String key, Object defaultValue) async {
+  static Future getPreference(String key, Object defaultValue) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (defaultValue is int) {
       return prefs.getInt(key);
@@ -60,14 +60,14 @@ class SharedPreferencesUtil {
 
   // 存储  List<Object> phoneList
   static void setSelectBeanList(
-      BuildContext context, List<Object> phoneList, String key) async {
+     List<Object> phoneList, String key) async {
     String jsonStringA = jsonEncode(phoneList);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(key, jsonStringA);
   }
 
   //获取  List<Object> phoneList
-  static Future getSelectBean(BuildContext context, String key) async {
+  static Future getSelectBean( String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? getdata = await prefs.getString(key);
     List list = json.decode(getdata!);
