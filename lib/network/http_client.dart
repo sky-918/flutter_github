@@ -37,12 +37,19 @@ class HttpClient {
       onError<String>? onErrorCall,
       bool isShowLoading = true,
       Method method = Method.get,
-      Options? options}) async {
+      Options? options,
+      String baseUrl = ""}) async {
     Response response;
     if (isShowLoading) {
       EasyLoading.show();
     }
     try {
+      //动态设置baseUrl
+      if (baseUrl.isEmpty) {
+        _dio.options.baseUrl = ApiAddress.apiBaseUrl;
+      } else {
+        _dio.options.baseUrl = baseUrl;
+      }
       response = await _dio.request(url,
           queryParameters: params,
           options: _checkOptions(method.value, options));
@@ -57,12 +64,13 @@ class HttpClient {
       onErrorCall?.call(e.message);
     }
   }
-  Map<String,String> requestParams = {
+
+  Map<String, String> requestParams = {
     "client_id": GitConfig.CLIENT_ID,
     "client_secret": GitConfig.CLIENT_SECRET
   };
-  Options _checkOptions(String method, Options? options) {
 
+  Options _checkOptions(String method, Options? options) {
     options ??= Options();
     options.method = method;
     // options.headers=requestParams;
