@@ -1,6 +1,10 @@
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_github/config/git_config.dart';
+import 'package:flutter_github/network/network.dart';
+import 'package:flutter_github/res/res_index.dart';
+import 'package:flutter_github/utils/log_util.dart';
 import 'package:flutter_github/utils/navigator_util.dart';
+import 'package:flutter_github/utils/shared_preferences_util.dart';
 import 'package:oktoast/oktoast.dart';
 
 /// @auter Created by tyy on 2022/1/13
@@ -8,7 +12,6 @@ import 'package:oktoast/oktoast.dart';
 /// version:v1.0.0
 ///
 ///
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -26,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
-            autofocus: true,
+            autofocus: false,
             decoration: InputDecoration(
                 labelText: "用户名",
                 hintText: "用户名或者邮箱",
@@ -50,8 +53,11 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                   onPressed: () {
                     //跳转安全登录
-                    NavigatorUtils.goLoginWebPage(context).then((value){
-                      _getTokan(value);
+                    NavigatorUtils.goLoginWebPage(context).then((value) {
+                      LogUtils.d("code=$value");
+                      if ((value ?? "").isNotEmpty) {
+                        _getTokan(value);
+                      }
                     });
                   },
                   child: Text("安全登录")),
@@ -66,7 +72,22 @@ class _LoginPageState extends State<LoginPage> {
     showToast("请使用安全登录");
   }
 
-  void _getTokan(code) {
-
+  void _getTokan(String code) {
+    Map<String, String> params = Map();
+    params["client_id"] = GitConfig.CLIENT_ID;
+    params["client_secret"] = GitConfig.CLIENT_SECRET;
+    params["code"] = code;
+    HttpClient.instanc.requestNetwork(ApiAddress.tokeUrl,
+        baseUrl: ApiAddress.tokenBase,
+        method: Method.post,
+        params: params,
+        onErrorCall: (errorString) {}, onSuccessCall: (data) {
+      var result = Uri.parse("tyy://authed?" + data.toString());
+      var token = result.queryParameters["access_token"];
+      if ((token ?? "").isNotEmpty) {
+        SharedPreferencesUtil.savePreference(
+            context, AppConstant.tokenKey, token!);
+      }
+    });
   }
 }

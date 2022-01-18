@@ -65,7 +65,7 @@ class HttpClient {
     }
   }
 
-  Map<String, String> requestParams = {
+  Map<String, String> _requestParams = {
     "client_id": GitConfig.CLIENT_ID,
     "client_secret": GitConfig.CLIENT_SECRET
   };

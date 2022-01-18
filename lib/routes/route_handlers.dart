@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../pages/home_page.dart';
 import '../pages/login/login_page.dart';
+import '../pages/login/login_web_page.dart';
 import '../pages/person/person_page.dart';
 import '../pages/test/bloc/page/bloc_page.dart';
 import '../pages/test/test_page.dart';
@@ -41,5 +42,5 @@ var loginCenterHandler = Handler(
 //安全登录页面
 var loginWebHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-  return const LoginPage();
+  return const LoginWebPage();
 });
