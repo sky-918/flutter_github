@@ -6,8 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../res/res_index.dart';
 import '../../../utils/log_util.dart';
-import '../../../widget/image_text_widget.dart';
 import '../../../utils/string_util.dart';
+import '../../../widget/image_text_widget.dart';
+
 /// @auter Created by tyy on 2021/12/31
 /// desc   :个人中心的顶部weiget
 /// version:v1.0.0
@@ -28,13 +29,17 @@ class PersonHeaderWidget extends StatelessWidget {
             ],
           ),
           ImageTextWidget(
-            title: "目前什么都没有",
+            title: state.personBean.blog.onDealNull(value: "目前什么都没有"),
             iconData: Icons.link,
             imgSize: 15.w,
             style: TextStyles.textSize10,
           ),
           Text(
-            "创建时间",
+            "${state.personBean.bio.onDealNull()}",
+            style: TextStyles.textSize10,
+          ),
+          Text(
+            "创建时间：${state.personBean.createdAt!.substring(0, 10)}",
             style: TextStyles.textSize10,
           )
         ]);
@@ -91,7 +96,8 @@ class PersonHeaderWidget extends StatelessWidget {
         Padding(
             padding: EdgeInsets.all(2.w),
             child: ImageTextWidget(
-              title: (personBean.company as String?).onDealNull(value: "目前什么都没有"),
+              title:
+                  (personBean.company as String?).onDealNull(value: "目前什么都没有"),
               iconData: Icons.pets,
               imgSize: 15.w,
               style: TextStyles.textSize10,
@@ -99,7 +105,8 @@ class PersonHeaderWidget extends StatelessWidget {
         Padding(
             padding: EdgeInsets.all(2.w),
             child: ImageTextWidget(
-              title: "目前什么都没有",
+              title:
+                  (personBean.location as String?).onDealNull(value: "目前什么都没有"),
               iconData: Icons.location_on,
               imgSize: 15.w,
               style: TextStyles.textSize10,

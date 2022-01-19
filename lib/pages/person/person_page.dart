@@ -45,8 +45,8 @@ class _PersistentHeaderRouteState extends State<PersistentHeaderRoute> {
           pinned: false,
           delegate: SliverHeaderDelegate(
             //有最大和最小高度
-            maxHeight: 120.h,
-            minHeight: 120.h,
+            maxHeight: 135.h,
+            minHeight: 135.h,
             child: PersonHeaderWidget(),
           ),
         ),
