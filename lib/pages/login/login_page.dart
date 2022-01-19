@@ -81,6 +81,7 @@ class _LoginPageState extends State<LoginPage> {
         baseUrl: ApiAddress.tokenBase,
         method: Method.post,
         params: params,
+        isGetToken: true,
         onErrorCall: (errorString) {}, onSuccessCall: (data) {
       var result = Uri.parse("tyy://authed?" + data.toString());
       var token = result.queryParameters["access_token"];
