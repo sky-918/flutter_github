@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_github/pages/person/bloc/person_bean.dart';
 import 'package:flutter_github/pages/person/bloc/person_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../res/res_index.dart';
 import '../../../utils/log_util.dart';
 import '../../../widget/image_text_widget.dart';
-
+import '../../../utils/string_util.dart';
 /// @auter Created by tyy on 2021/12/31
 /// desc   :个人中心的顶部weiget
 /// version:v1.0.0
@@ -23,7 +24,7 @@ class PersonHeaderWidget extends StatelessWidget {
           Row(
             children: [
               _personHeaderImg(context, state.personBean.avatarUrl),
-              _personHeaderInfo(context)
+              _personHeaderInfo(context, state.personBean)
             ],
           ),
           ImageTextWidget(
@@ -65,7 +66,7 @@ class PersonHeaderWidget extends StatelessWidget {
 
   ///用户信息
   ///
-  _personHeaderInfo(context) {
+  _personHeaderInfo(context, PersonBean personBean) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -74,7 +75,7 @@ class PersonHeaderWidget extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  "常胜君",
+                  personBean.login.onDealNull(),
                   style: TextStyles.textSize18Bold,
                 ),
                 Icon(Icons.notifications)
@@ -83,14 +84,14 @@ class PersonHeaderWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.all(2.w),
           child: Text(
-            "sky918",
+            personBean.name.onDealNull(),
             style: TextStyles.textSize12,
           ),
         ),
         Padding(
             padding: EdgeInsets.all(2.w),
             child: ImageTextWidget(
-              title: "目前什么都没有",
+              title: (personBean.company as String?).onDealNull(value: "目前什么都没有"),
               iconData: Icons.pets,
               imgSize: 15.w,
               style: TextStyles.textSize10,
