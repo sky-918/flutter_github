@@ -1,5 +1,3 @@
-import 'package:equatable/equatable.dart';
-
 /// login : "sky-918"
 /// id : 16182460
 /// node_id : "MDQ6VXNlcjE2MTgyNDYw"
@@ -22,7 +20,7 @@ import 'package:equatable/equatable.dart';
 /// company : null
 /// blog : ""
 /// location : null
-/// email : null
+/// email : "1004994051@qq.com"
 /// hireable : null
 /// bio : "致良知；\r\n知行合一；\r\n圣人之道，吾性自足。\r\nhahah\r\nhahahha\r\nhahaha\r\n"
 /// twitter_username : null
@@ -31,43 +29,56 @@ import 'package:equatable/equatable.dart';
 /// followers : 1
 /// following : 0
 /// created_at : "2015-12-07T01:36:36Z"
-/// updated_at : "2022-01-04T03:08:45Z"
+/// updated_at : "2022-01-19T09:11:28Z"
+/// private_gists : 0
+/// total_private_repos : 1
+/// owned_private_repos : 1
+/// disk_usage : 91034
+/// collaborators : 0
+/// two_factor_authentication : false
+/// plan : {"name":"free","space":976562499,"collaborators":0,"private_repos":10000}
 
-class PersonBean extends Equatable {
+class PersonBean {
   PersonBean({
-    String? login,
-    int? id,
-    String? nodeId,
-    String? avatarUrl,
-    String? gravatarId,
-    String? url,
-    String? htmlUrl,
-    String? followersUrl,
-    String? followingUrl,
-    String? gistsUrl,
-    String? starredUrl,
-    String? subscriptionsUrl,
-    String? organizationsUrl,
-    String? reposUrl,
-    String? eventsUrl,
-    String? receivedEventsUrl,
-    String? type,
-    bool? siteAdmin,
-    String? name,
-    dynamic company,
-    String? blog,
-    dynamic location,
-    dynamic email,
-    dynamic hireable,
-    String? bio,
-    dynamic twitterUsername,
-    int? publicRepos,
-    int? publicGists,
-    int? followers,
-    int? following,
-    String? createdAt,
-    String? updatedAt,
-  }) {
+      String? login, 
+      int? id, 
+      String? nodeId, 
+      String? avatarUrl, 
+      String? gravatarId, 
+      String? url, 
+      String? htmlUrl, 
+      String? followersUrl, 
+      String? followingUrl, 
+      String? gistsUrl, 
+      String? starredUrl, 
+      String? subscriptionsUrl, 
+      String? organizationsUrl, 
+      String? reposUrl, 
+      String? eventsUrl, 
+      String? receivedEventsUrl, 
+      String? type, 
+      bool? siteAdmin, 
+      String? name, 
+      dynamic company, 
+      String? blog, 
+      dynamic location, 
+      String? email, 
+      dynamic hireable, 
+      String? bio, 
+      dynamic twitterUsername, 
+      int? publicRepos, 
+      int? publicGists, 
+      int? followers, 
+      int? following, 
+      String? createdAt, 
+      String? updatedAt, 
+      int? privateGists, 
+      int? totalPrivateRepos, 
+      int? ownedPrivateRepos, 
+      int? diskUsage, 
+      int? collaborators, 
+      bool? twoFactorAuthentication, 
+      Plan? plan,}){
     _login = login;
     _id = id;
     _nodeId = nodeId;
@@ -100,10 +111,15 @@ class PersonBean extends Equatable {
     _following = following;
     _createdAt = createdAt;
     _updatedAt = updatedAt;
-  }
-
+    _privateGists = privateGists;
+    _totalPrivateRepos = totalPrivateRepos;
+    _ownedPrivateRepos = ownedPrivateRepos;
+    _diskUsage = diskUsage;
+    _collaborators = collaborators;
+    _twoFactorAuthentication = twoFactorAuthentication;
+    _plan = plan;
+}
   static final empty = PersonBean();
-
   PersonBean.fromJson(dynamic json) {
     _login = json['login'];
     _id = json['id'];
@@ -137,8 +153,14 @@ class PersonBean extends Equatable {
     _following = json['following'];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
+    _privateGists = json['private_gists'];
+    _totalPrivateRepos = json['total_private_repos'];
+    _ownedPrivateRepos = json['owned_private_repos'];
+    _diskUsage = json['disk_usage'];
+    _collaborators = json['collaborators'];
+    _twoFactorAuthentication = json['two_factor_authentication'];
+    _plan = json['plan'] != null ? Plan.fromJson(json['plan']) : null;
   }
-
   String? _login;
   int? _id;
   String? _nodeId;
@@ -161,7 +183,7 @@ class PersonBean extends Equatable {
   dynamic _company;
   String? _blog;
   dynamic _location;
-  dynamic _email;
+  String? _email;
   dynamic _hireable;
   String? _bio;
   dynamic _twitterUsername;
@@ -171,70 +193,53 @@ class PersonBean extends Equatable {
   int? _following;
   String? _createdAt;
   String? _updatedAt;
+  int? _privateGists;
+  int? _totalPrivateRepos;
+  int? _ownedPrivateRepos;
+  int? _diskUsage;
+  int? _collaborators;
+  bool? _twoFactorAuthentication;
+  Plan? _plan;
 
   String? get login => _login;
-
   int? get id => _id;
-
   String? get nodeId => _nodeId;
-
   String? get avatarUrl => _avatarUrl;
-
   String? get gravatarId => _gravatarId;
-
   String? get url => _url;
-
   String? get htmlUrl => _htmlUrl;
-
   String? get followersUrl => _followersUrl;
-
   String? get followingUrl => _followingUrl;
-
   String? get gistsUrl => _gistsUrl;
-
   String? get starredUrl => _starredUrl;
-
   String? get subscriptionsUrl => _subscriptionsUrl;
-
   String? get organizationsUrl => _organizationsUrl;
-
   String? get reposUrl => _reposUrl;
-
   String? get eventsUrl => _eventsUrl;
-
   String? get receivedEventsUrl => _receivedEventsUrl;
-
   String? get type => _type;
-
   bool? get siteAdmin => _siteAdmin;
-
   String? get name => _name;
-
   dynamic get company => _company;
-
   String? get blog => _blog;
-
   dynamic get location => _location;
-
-  dynamic get email => _email;
-
+  String? get email => _email;
   dynamic get hireable => _hireable;
-
   String? get bio => _bio;
-
   dynamic get twitterUsername => _twitterUsername;
-
   int? get publicRepos => _publicRepos;
-
   int? get publicGists => _publicGists;
-
   int? get followers => _followers;
-
   int? get following => _following;
-
   String? get createdAt => _createdAt;
-
   String? get updatedAt => _updatedAt;
+  int? get privateGists => _privateGists;
+  int? get totalPrivateRepos => _totalPrivateRepos;
+  int? get ownedPrivateRepos => _ownedPrivateRepos;
+  int? get diskUsage => _diskUsage;
+  int? get collaborators => _collaborators;
+  bool? get twoFactorAuthentication => _twoFactorAuthentication;
+  Plan? get plan => _plan;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -270,42 +275,60 @@ class PersonBean extends Equatable {
     map['following'] = _following;
     map['created_at'] = _createdAt;
     map['updated_at'] = _updatedAt;
+    map['private_gists'] = _privateGists;
+    map['total_private_repos'] = _totalPrivateRepos;
+    map['owned_private_repos'] = _ownedPrivateRepos;
+    map['disk_usage'] = _diskUsage;
+    map['collaborators'] = _collaborators;
+    map['two_factor_authentication'] = _twoFactorAuthentication;
+    if (_plan != null) {
+      map['plan'] = _plan?.toJson();
+    }
     return map;
   }
 
-  @override
-  List<Object?> get props => [
-        login,
-        id,
-        nodeId,
-        avatarUrl,
-        gravatarId,
-        url,
-        htmlUrl,
-        followersUrl,
-        followingUrl,
-        gistsUrl,
-        starredUrl,
-        subscriptionsUrl,
-        organizationsUrl,
-        reposUrl,
-        eventsUrl,
-        receivedEventsUrl,
-        type,
-        siteAdmin,
-        name,
-        company,
-        blog,
-        location,
-        email,
-        hireable,
-        bio,
-        twitterUsername,
-        publicRepos,
-        publicGists,
-        followers,
-        following,
-        createdAt,
-        updatedAt,
-      ];
+}
+
+/// name : "free"
+/// space : 976562499
+/// collaborators : 0
+/// private_repos : 10000
+
+class Plan {
+  Plan({
+      String? name, 
+      int? space, 
+      int? collaborators, 
+      int? privateRepos,}){
+    _name = name;
+    _space = space;
+    _collaborators = collaborators;
+    _privateRepos = privateRepos;
+}
+
+  Plan.fromJson(dynamic json) {
+    _name = json['name'];
+    _space = json['space'];
+    _collaborators = json['collaborators'];
+    _privateRepos = json['private_repos'];
+  }
+  String? _name;
+  int? _space;
+  int? _collaborators;
+  int? _privateRepos;
+
+  String? get name => _name;
+  int? get space => _space;
+  int? get collaborators => _collaborators;
+  int? get privateRepos => _privateRepos;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['name'] = _name;
+    map['space'] = _space;
+    map['collaborators'] = _collaborators;
+    map['private_repos'] = _privateRepos;
+    return map;
+  }
+
 }
