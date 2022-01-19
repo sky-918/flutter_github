@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_github/config/git_config.dart';
-import 'package:flutter_github/network/api_address.dart';
 
+import 'api_address.dart';
 import 'log_interceptor.dart';
+import 'token_interceptor.dart';
 
 /// @auter Created by tyy on 2022/1/4
 /// desc   :
@@ -28,7 +28,10 @@ class HttpClient {
         connectTimeout: _connecTimeout,
         receiveTimeout: _receiveTimeout,
         baseUrl: ApiAddress.apiBaseUrl);
-    _dio = Dio(baseOptions)..interceptors.add(InterceptorLog());
+    _dio = Dio(baseOptions)
+      // token拦截器必须放在第一个
+      ..interceptors.add(TokenInterceptor())
+      ..interceptors.add(InterceptorLog());
   }
 
   requestNetwork(url,
@@ -38,7 +41,8 @@ class HttpClient {
       bool isShowLoading = true,
       Method method = Method.get,
       Options? options,
-      String baseUrl = ""}) async {
+      String baseUrl = "",
+      bool isGetToken = false}) async {
     Response response;
     if (isShowLoading) {
       EasyLoading.show();
@@ -50,6 +54,11 @@ class HttpClient {
       } else {
         _dio.options.baseUrl = baseUrl;
       }
+      //动态移除token拦截器，所以token拦截器必须放在第一个
+      if (isGetToken) {
+        _dio.interceptors.removeAt(0);
+      }
+
       response = await _dio.request(url,
           queryParameters: params,
           options: _checkOptions(method.value, options));
@@ -64,11 +73,6 @@ class HttpClient {
       onErrorCall?.call(e.message);
     }
   }
-
-  Map<String, String> _requestParams = {
-    "client_id": GitConfig.CLIENT_ID,
-    "client_secret": GitConfig.CLIENT_SECRET
-  };
 
   Options _checkOptions(String method, Options? options) {
     options ??= Options();

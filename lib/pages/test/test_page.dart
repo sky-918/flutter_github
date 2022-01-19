@@ -53,7 +53,7 @@ class _TestPageState extends State<TestPage> {
   }
   void _getNetwordData()  {
     PersonBean? personBean;
-    HttpClient.instanc.requestNetwork(ApiAddress.loginUrl,
+    HttpClient.instanc.requestNetwork(ApiAddress.loginUrl,isGetToken: true,
         onErrorCall: (String mesage) {
           LogUtils.d("错误信息：$mesage");
         }, onSuccessCall: (data)  {
