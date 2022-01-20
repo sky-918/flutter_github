@@ -39,7 +39,7 @@ class PersonHeaderWidget extends StatelessWidget {
             style: TextStyles.textSize10,
           ),
           Text(
-            "创建时间：${state.personBean.createdAt!.substring(0, 10)}",
+            "创建时间：${state.personBean.createdAt?.substring(0, 10)}",
             style: TextStyles.textSize10,
           )
         ]);
