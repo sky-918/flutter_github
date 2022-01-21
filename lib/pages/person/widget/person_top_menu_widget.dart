@@ -20,11 +20,13 @@ class PersonTopMenuWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _getMenuItem(AppStrings.homeWidgetMenuRepos,state.personBean.publicRepos.toString()),
-            _getMenuItem(AppStrings.homeWidgetMenuFans,state.personBean.followers.toString()),
-            _getMenuItem(AppStrings.homeWidgetMenuFocus,"0"),
-            _getMenuItem(AppStrings.homeWidgetMenuStart,"0"),
-            _getMenuItem(AppStrings.homeWidgetMenuHonor,"0"),
+            _getMenuItem(AppStrings.homeWidgetMenuRepos,
+                state.personBean.publicRepos.toString()),
+            _getMenuItem(AppStrings.homeWidgetMenuFans,
+                state.personBean.followers.toString()),
+            _getMenuItem(AppStrings.homeWidgetMenuFocus, "0"),
+            _getMenuItem(AppStrings.homeWidgetMenuStart, "0"),
+            _getMenuItem(AppStrings.homeWidgetMenuHonor, "0"),
           ],
         );
       }),
@@ -37,7 +39,7 @@ class PersonTopMenuWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [Text(name), Text(num)],
+          children: [Text(name,style: TextStyles.textSize10,), Text(num,style: TextStyles.textSize10)],
         ));
   }
 }

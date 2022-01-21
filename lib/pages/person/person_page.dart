@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../res/res_index.dart';
 import '../../widget/sliver_header_delegate.dart';
 import 'bloc/person_bloc.dart';
 import 'widget/person_header.dart';
@@ -96,20 +97,23 @@ class _PersistentHeaderRouteState extends State<PersistentHeaderRoute> {
     );
   }
 
-
-  _getItemTitle(){
-    return Column(children: [
-      Text("个人动态"),
-      Padding(
-        padding: EdgeInsets.all(10),
-        child: SvgPicture.network( 'https://ghchart.rshah.org/sky-918',
-          height: 100,
-          width:100,
-          placeholderBuilder: (BuildContext context) => Container(
-              padding: const EdgeInsets.all(30.0),
-              child: const CircularProgressIndicator()),
-        ),
-      )
-    ],);
+  _getItemTitle() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("个人动态", style: TextStyles.textSize10),
+        Padding(
+          padding: EdgeInsets.all(10.r),
+          child: SvgPicture.network(
+            'https://ghchart.rshah.org/sky-918',
+            height: 70.h,
+            width: 100.h,
+            placeholderBuilder: (BuildContext context) => Container(
+                padding:  EdgeInsets.all(30.0.r),
+                child: const CircularProgressIndicator()),
+          ),
+        )
+      ],
+    );
   }
 }
