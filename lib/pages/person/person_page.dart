@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '/network/network.dart';
 import '../../res/res_index.dart';
 import '../../widget/sliver_header_delegate.dart';
 import 'bloc/person_bloc.dart';
@@ -67,7 +68,7 @@ class _PersistentHeaderRouteState extends State<PersistentHeaderRoute> {
             //有最大和最小高度
             maxHeight: 106.h,
             minHeight: 106.h,
-            child: _getItemTitle(),
+            child: _getItemTitle("sky-918"),
           ),
         ),
         buildSliverList(20),
@@ -97,7 +98,7 @@ class _PersistentHeaderRouteState extends State<PersistentHeaderRoute> {
     );
   }
 
-  _getItemTitle() {
+  _getItemTitle(userName) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -105,11 +106,11 @@ class _PersistentHeaderRouteState extends State<PersistentHeaderRoute> {
         Padding(
           padding: EdgeInsets.all(10.r),
           child: SvgPicture.network(
-            'https://ghchart.rshah.org/sky-918',
+            ApiAddress.getEventImage(userName),
             height: 70.h,
             width: 100.h,
             placeholderBuilder: (BuildContext context) => Container(
-                padding:  EdgeInsets.all(30.0.r),
+                padding: EdgeInsets.all(20.0.r),
                 child: const CircularProgressIndicator()),
           ),
         )

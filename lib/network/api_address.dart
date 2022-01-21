@@ -15,4 +15,15 @@ class ApiAddress {
 //获得token
   static const tokenBase = "https://github.com/";
   static const tokeUrl = "login/oauth/access_token";
+
+//个人中心 活动列表
+  static getEvent(String userName) {
+    // return "users/$userName/evbents";
+    return "/users/sky-918/events?page=1&per_page=1";
+  }
+
+//个人中心 活动动态图
+  static getEventImage(String userName, {String color = ""}) {
+    return "https://ghchart.rshah.org/$color/$userName";
+  }
 }

@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_github/modle/person_events_bean.dart';
 import 'package:flutter_github/network/network.dart';
 import 'package:flutter_github/pages/person/bloc/person_bean.dart';
 import 'package:flutter_github/utils/log_util.dart';
@@ -47,22 +49,47 @@ class _TestPageState extends State<TestPage> {
                 onPressed: () {
                   _getNetwordData();
                 },
-                child: Text("GetUser"))
+                child: Text("GetUser")),
+            TextButton(
+                onPressed: () {
+                  _getNetPersonEvbents("");
+                },
+                child: Text("GetUserEvent")),
           ],
         ));
   }
-  void _getNetwordData()  {
-    PersonBean? personBean;
-    HttpClient.instanc.requestNetwork(ApiAddress.loginUrl,isGetToken: true,
-        onErrorCall: (String mesage) {
-          LogUtils.d("错误信息：$mesage");
-        }, onSuccessCall: (data)  {
-          personBean =  PersonBean.fromJson(data);
-          if (personBean != null) {
-            LogUtils.d("发送图片: ${personBean!.avatarUrl}");
-          }
-        });
 
+  void _getNetPersonEvbents(String userName) {
+    Map<String, int> params = Map();
+    params["page"] = 1;
+    params["per_page"] = 10;
+
+    PersonEventsBean? personEventsBean;
+    HttpClient.instanc.requestNetwork(ApiAddress.getEvent(userName),
+        onErrorCall: (msg) {
+      LogUtils.d("错误信息：$msg");
+    }, onSuccessCall: (data) {
+          List<PersonEventsBean> list = [];
+          for (int i = 0; i < data.length; i++) {
+            list.add(PersonEventsBean.fromJson(data[i]));
+          }
+      if (list .length>0) {
+        LogUtils.d("sassasdds：${list[0].id}");
+      }
+    });
+  }
+
+  void _getNetwordData() {
+    PersonBean? personBean;
+    HttpClient.instanc.requestNetwork(ApiAddress.loginUrl,
+        onErrorCall: (String mesage) {
+      LogUtils.d("错误信息：$mesage");
+    }, onSuccessCall: (data) {
+      personBean = PersonBean.fromJson(data);
+      if (personBean != null) {
+        LogUtils.d("发送图片: ${personBean!.avatarUrl}");
+      }
+    });
   }
 }
 
