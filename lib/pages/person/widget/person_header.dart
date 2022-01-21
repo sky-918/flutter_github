@@ -52,13 +52,13 @@ class PersonHeaderWidget extends StatelessWidget {
   _personHeaderImg(context, String? url) {
     return InkWell(
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(10.r),
         child: ClipOval(
           child: Image.network(
             url ??
                 'https://file02.16sucai.com/d/file/2014/0829/b871e1addf5f8e96f3b390ece2b2da0d.jpg',
-            width: 80,
-            height: 80,
+            width: 60.r,
+            height:60.r,
             fit: BoxFit.cover,
           ),
         ),
