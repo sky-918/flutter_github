@@ -17,9 +17,9 @@ class ApiAddress {
   static const tokeUrl = "login/oauth/access_token";
 
 //个人中心 活动列表
-  static getEvent(String userName) {
-    // return "users/$userName/evbents";
-    return "/users/sky-918/events?page=1&per_page=1";
+  static getEvent(String userName,{int page=1,int pageSize=10}) {
+    return "users/$userName/events?page=$page&per_page=$pageSize";
+
   }
 
 //个人中心 活动动态图
