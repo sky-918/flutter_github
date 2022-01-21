@@ -65,7 +65,7 @@ class _TestPageState extends State<TestPage> {
     params["per_page"] = 10;
 
     PersonEventsBean? personEventsBean;
-    HttpClient.instanc.requestNetwork(ApiAddress.getEvent(userName),
+    HttpClient.instanc.requestNetwork(ApiAddress.getEvent("sky-918",page: 1,pageSize: 1),
         onErrorCall: (msg) {
       LogUtils.d("错误信息：$msg");
     }, onSuccessCall: (data) {
