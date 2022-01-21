@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../widget/sliver_header_delegate.dart';
 import 'bloc/person_bloc.dart';
@@ -59,6 +60,15 @@ class _PersistentHeaderRouteState extends State<PersistentHeaderRoute> {
             child: PersonTopMenuWidget(),
           ),
         ),
+        SliverPersistentHeader(
+          pinned: false,
+          delegate: SliverHeaderDelegate(
+            //有最大和最小高度
+            maxHeight: 150.h,
+            minHeight: 150.h,
+            child: _getItemTitle(),
+          ),
+        ),
         buildSliverList(20),
       ],
     );
@@ -84,5 +94,22 @@ class _PersistentHeaderRouteState extends State<PersistentHeaderRoute> {
       alignment: Alignment.centerLeft,
       child: Text("PersistentHeader $i"),
     );
+  }
+
+
+  _getItemTitle(){
+    return Column(children: [
+      Text("个人动态"),
+      Padding(
+        padding: EdgeInsets.all(10),
+        child: SvgPicture.network( 'https://ghchart.rshah.org/sky-918',
+          height: 100,
+          width:100,
+          placeholderBuilder: (BuildContext context) => Container(
+              padding: const EdgeInsets.all(30.0),
+              child: const CircularProgressIndicator()),
+        ),
+      )
+    ],);
   }
 }
