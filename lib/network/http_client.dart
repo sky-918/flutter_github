@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_github/network/network.dart';
 
 import 'api_address.dart';
 import 'log_interceptor.dart';
@@ -36,8 +37,8 @@ class HttpClient {
 
   requestNetwork(url,
       {Map<String, dynamic>? params,
-      onSuccess? onSuccessCall,
-      onError<String>? onErrorCall,
+      required onSuccess? onSuccessCall,
+      required onError<String>? onErrorCall,
       bool isShowLoading = true,
       Method method = Method.get,
       Options? options,
