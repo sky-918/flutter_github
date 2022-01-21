@@ -16,19 +16,23 @@ class PersonTopMenuWidget extends StatelessWidget {
     return Container(
       color: AppColors.appColor,
       child: BlocBuilder<PersonBloc, PersonState>(builder: (context, state) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _getMenuItem(AppStrings.homeWidgetMenuRepos,
-                state.personBean.publicRepos.toString()),
-            _getMenuItem(AppStrings.homeWidgetMenuFans,
-                state.personBean.followers.toString()),
-            _getMenuItem(AppStrings.homeWidgetMenuFocus, "0"),
-            _getMenuItem(AppStrings.homeWidgetMenuStart, "0"),
-            _getMenuItem(AppStrings.homeWidgetMenuHonor, "0"),
-          ],
-        );
+        if (state is PersonTop) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _getMenuItem(AppStrings.homeWidgetMenuRepos,
+                  state.personBean.publicRepos.toString()),
+              _getMenuItem(AppStrings.homeWidgetMenuFans,
+                  state.personBean.followers.toString()),
+              _getMenuItem(AppStrings.homeWidgetMenuFocus, "0"),
+              _getMenuItem(AppStrings.homeWidgetMenuStart, "0"),
+              _getMenuItem(AppStrings.homeWidgetMenuHonor, "0"),
+            ],
+          );
+        } else {
+          return Text("data");
+        }
       }),
     );
   }
@@ -39,7 +43,13 @@ class PersonTopMenuWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [Text(name,style: TextStyles.textSize10,), Text(num,style: TextStyles.textSize10)],
+          children: [
+            Text(
+              name,
+              style: TextStyles.textSize10,
+            ),
+            Text(num, style: TextStyles.textSize10)
+          ],
         ));
   }
 }

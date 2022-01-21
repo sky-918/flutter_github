@@ -21,28 +21,32 @@ class PersonHeaderWidget extends StatelessWidget {
     return Container(
       color: AppColors.appColor,
       child: BlocBuilder<PersonBloc, PersonState>(builder: (context, state) {
-        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(
-            children: [
-              _personHeaderImg(context, state.personBean.avatarUrl),
-              _personHeaderInfo(context, state.personBean)
-            ],
-          ),
-          ImageTextWidget(
-            title: state.personBean.blog.onDealNull(value: "目前什么都没有"),
-            iconData: Icons.link,
-            imgSize: 15.w,
-            style: TextStyles.textSize10,
-          ),
-          Text(
-            "${state.personBean.bio.onDealNull()}",
-            style: TextStyles.textSize10,
-          ),
-          Text(
-            "创建时间：${state.personBean.createdAt?.substring(0, 10)}",
-            style: TextStyles.textSize10,
-          )
-        ]);
+        if(state is PersonTop){
+          return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(
+              children: [
+                _personHeaderImg(context, state.personBean.avatarUrl),
+                _personHeaderInfo(context, state.personBean)
+              ],
+            ),
+            ImageTextWidget(
+              title: state.personBean.blog.onDealNull(value: "目前什么都没有"),
+              iconData: Icons.link,
+              imgSize: 15.w,
+              style: TextStyles.textSize10,
+            ),
+            Text(
+              "${state.personBean.bio.onDealNull()}",
+              style: TextStyles.textSize10,
+            ),
+            Text(
+              "创建时间：${state.personBean.createdAt?.substring(0, 10)}",
+              style: TextStyles.textSize10,
+            )
+          ]);
+        }
+        return Text("data");
+
       }),
     );
   }

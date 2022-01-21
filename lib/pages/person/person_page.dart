@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_github/modle/person_events_bean.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -71,22 +72,30 @@ class _PersistentHeaderRouteState extends State<PersistentHeaderRoute> {
             child: _getItemTitle("sky-918"),
           ),
         ),
-        buildSliverList(20),
+        BlocBuilder<PersonBloc, PersonState>(builder: (context, state) {
+          if(state is PersonList){
+            return buildSliverList(state.personEventsBean);
+          }
+         return buildSliverList([]);
+        })
       ],
     );
   }
 
   // 构建固定高度的SliverList，count为列表项属相
-  Widget buildSliverList([int count = 5]) {
-    return SliverFixedExtentList(
-      itemExtent: 50,
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          return ListTile(title: Text('$index'));
-        },
-        childCount: count,
-      ),
-    );
+  Widget buildSliverList(List<PersonEventsBean> personEventsBeanList,
+      [int count = 5]) {
+      return SliverFixedExtentList(
+        itemExtent: 50,
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return ListTile(
+                title: Text(
+                    '${personEventsBeanList[index].type} ${(personEventsBeanList[index].repo?.name)}'));
+          },
+          childCount: personEventsBeanList.length,
+        ),
+      );
   }
 
   // 构建 header
