@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 import '/modle/person_events_bean.dart';
 import '/network/network.dart';
@@ -12,7 +11,7 @@ part 'person_event.dart';
 part 'person_state.dart';
 
 class PersonBloc extends Bloc<PersonEvent, PersonState> {
-  PersonBloc() : super(PersonTop()) {
+  PersonBloc() : super(PersonState()) {
     on<UpdataEvent>((event, emit) {
       _getNetwordData();
     });
@@ -26,13 +25,13 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
     }, onSuccessCall: (data) {
       personBean = PersonBean.fromJson(data);
       if (personBean != null) {
-        emit(PersonTop(personBean:personBean));
-        _getNetPersonEvbents(personBean!.login.onDealNull());
+        // emit(state.setPersonBean(personBean!));
+        _getNetPersonEvbents(personBean!.login.onDealNull(),personBean!);
       }
     });
   }
 
-  void _getNetPersonEvbents(String userName) {
+  void _getNetPersonEvbents(String userName,PersonBean personBean) {
     HttpClient.instanc
         .requestNetwork(ApiAddress.getEvent(userName, page: 1, pageSize: 20),
             onErrorCall: (msg) {
@@ -42,7 +41,7 @@ class PersonBloc extends Bloc<PersonEvent, PersonState> {
       for (int i = 0; i < data.length; i++) {
         list.add(PersonEventsBean.fromJson(data[i]));
       }
-      emit(PersonList(list));
+      emit(state.setPersonBean(personBean,list));
     });
   }
 }

@@ -8,3 +8,4 @@ abstract class PersonEvent extends Equatable {
 }
 
 class UpdataEvent extends PersonEvent {}
+class UpdataEvent1 extends PersonEvent {}

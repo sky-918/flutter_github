@@ -16,7 +16,7 @@ class PersonTopMenuWidget extends StatelessWidget {
     return Container(
       color: AppColors.appColor,
       child: BlocBuilder<PersonBloc, PersonState>(builder: (context, state) {
-        if (state is PersonTop) {
+
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,9 +30,8 @@ class PersonTopMenuWidget extends StatelessWidget {
               _getMenuItem(AppStrings.homeWidgetMenuHonor, "0"),
             ],
           );
-        } else {
-          return Text("data");
-        }
+
+
       }),
     );
   }

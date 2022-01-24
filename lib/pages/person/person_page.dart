@@ -73,10 +73,7 @@ class _PersistentHeaderRouteState extends State<PersistentHeaderRoute> {
           ),
         ),
         BlocBuilder<PersonBloc, PersonState>(builder: (context, state) {
-          if(state is PersonList){
-            return buildSliverList(state.personEventsBean);
-          }
-         return buildSliverList([]);
+        return  buildSliverList(state.personEventsBean);
         })
       ],
     );

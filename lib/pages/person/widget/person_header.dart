@@ -21,7 +21,7 @@ class PersonHeaderWidget extends StatelessWidget {
     return Container(
       color: AppColors.appColor,
       child: BlocBuilder<PersonBloc, PersonState>(builder: (context, state) {
-        if(state is PersonTop){
+
           return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(
               children: [
@@ -44,8 +44,7 @@ class PersonHeaderWidget extends StatelessWidget {
               style: TextStyles.textSize10,
             )
           ]);
-        }
-        return Text("data");
+
 
       }),
     );
